@@ -1,0 +1,26 @@
+// agent/tools/github-file.json
+{
+  "name": "github_get_file",
+  "description": "Obtiene el contenido raw de un archivo específico del repositorio",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "path": { "type": "string", "description": "Ruta relativa del archivo (ej: src/domain/User.java)" },
+      "ref": { "type": "string", "description": "Branch o commit SHA", "default": "main" }
+    },
+    "required": ["path"],
+    "additionalProperties": false
+  },
+  "mcpBinding": {
+    "server": "github",
+    "tool": "get_file",
+    "timeoutMs": 3000,
+    "cache": { "enabled": true, "ttlSeconds": 300 }
+  },
+  "security": {
+    "requiresAuth": true,
+    "readOnly": true,
+    "piiFilter": true,
+    "maxFileSize": "2MB"
+  }
+}

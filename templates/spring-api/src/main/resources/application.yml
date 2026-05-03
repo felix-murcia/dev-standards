@@ -1,0 +1,16 @@
+# templates/spring-api/src/main/resources/application.yml
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+server:
+  port: ${SERVER_PORT:8080}
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}

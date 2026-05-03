@@ -1,0 +1,16 @@
+// agent/tools/github-pr-issues.json
+{
+  "name": "github_list_pulls",
+  "description": "Lista pull requests abiertos o cerrados con filtros opcionales",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "state": { "type": "string", "enum": ["open", "closed", "all"], "default": "open" },
+      "author": { "type": "string", "description": "Filtrar por autor" },
+      "limit": { "type": "integer", "minimum": 1, "maximum": 50, "default": 10 }
+    },
+    "additionalProperties": false
+  },
+  "mcpBinding": { "server": "github", "tool": "list_pull_requests" },
+  "security": { "requiresAuth": true, "readOnly": true }
+}

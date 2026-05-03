@@ -1,0 +1,19 @@
+// agent/manifest.json (sección actualizada)
+{
+  "agentId": "felix-dev-assistant-v1",
+  "version": "1.3.0",
+  "mcp": {
+    "enabledServers": ["github"],
+    "configPath": ".mcp.json",
+    "defaultTimeout": 8000,
+    "progressiveToolLoading": true
+  },
+  "permissions": {
+    "github": {
+      "allowedTools": ["github_search_code", "github_get_file", "github_list_pulls"],
+      "deniedTools": ["create_issue", "push_files", "delete_branch"],
+      "scope": "read-only",
+      "requireApprovalForWrite": true
+    }
+  }
+}

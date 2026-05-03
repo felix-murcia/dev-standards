@@ -1,0 +1,26 @@
+// agent/tools/github-search.json
+{
+  "name": "github_search_code",
+  "description": "Busca archivos y fragmentos de código en el repositorio vinculado",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": { "type": "string", "description": "Término o patrón de búsqueda (soporta sintaxis GitHub: path:, ext:, language:)" },
+      "ref": { "type": "string", "description": "Branch o tag (default: repo default branch)", "default": "main" }
+    },
+    "required": ["query"],
+    "additionalProperties": false
+  },
+  "mcpBinding": {
+    "server": "github",
+    "tool": "search_code",
+    "timeoutMs": 5000,
+    "retryPolicy": { "max": 2, "backoffMs": 1000, "onFailure": "fallback_to_cache" }
+  },
+  "security": {
+    "requiresAuth": true,
+    "readOnly": true,
+    "rateLimit": "100/min",
+    "scopesRequired": ["repo:status", "public_repo"]
+  }
+}
